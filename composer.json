@@ -38,7 +38,6 @@
     },
     "require-dev": {
         "larastan/larastan": "^3.0",
-        "odinns/coding-style": "^1.0",
         "odinns/phpstan-pest-this": "^1.0",
         "orchestra/testbench": "^10.0 || ^11.0",
         "pestphp/pest": "^3.0 || ^4.0",
