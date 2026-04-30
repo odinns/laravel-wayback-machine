@@ -1,0 +1,9 @@
+laravel: '@testbench'
+
+providers:
+  - Odinns\LaravelWaybackMachine\WaybackMachineServiceProvider
+
+workbench:
+  install: false
+  discovers:
+    commands: false

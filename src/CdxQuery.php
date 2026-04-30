@@ -33,6 +33,7 @@ final readonly class CdxQuery
     {
         $parameters = [
             'url' => $scope->cdxUrl(),
+            'matchType' => $scope->cdxMatchType(),
             'output' => 'json',
             'fl' => implode(',', $this->fields),
             'showResumeKey' => 'true',

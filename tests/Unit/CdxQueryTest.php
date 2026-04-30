@@ -24,5 +24,6 @@ it('encodes repeated cdx filters', function (): void {
         '!original:*/feed/*',
     ])
         ->and($parameters['page'])->toBe(2)
+        ->and($parameters['matchType'])->toBe('host')
         ->and($parameters['limit'])->toBe(50);
 });

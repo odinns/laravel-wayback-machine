@@ -34,6 +34,17 @@ final class CdxParser
             throw new RuntimeException('CDX response is missing a header row.');
         }
 
+        if ($header === ['resumeKey']) {
+            $resumeKey = null;
+            $first = $rows[0] ?? null;
+
+            if (is_array($first) && is_string($first[0] ?? null)) {
+                $resumeKey = $first[0];
+            }
+
+            return new CdxPage([], $resumeKey);
+        }
+
         $resumeKey = null;
 
         if ($rows !== []) {
@@ -49,6 +60,10 @@ final class CdxParser
 
         foreach ($rows as $row) {
             if (! is_array($row)) {
+                continue;
+            }
+
+            if ($row === []) {
                 continue;
             }
 

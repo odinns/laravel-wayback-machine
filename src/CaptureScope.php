@@ -32,10 +32,15 @@ final readonly class CaptureScope
     public function cdxUrl(): string
     {
         return match ($this->match) {
-            'host' => $this->host().'*',
-            'prefix' => rtrim($this->value, '*').'*',
+            'host' => $this->host(),
+            'prefix' => $this->value,
             default => $this->value,
         };
+    }
+
+    public function cdxMatchType(): string
+    {
+        return $this->match;
     }
 
     public function safeName(): string

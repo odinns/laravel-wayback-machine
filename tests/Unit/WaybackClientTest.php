@@ -36,6 +36,6 @@ it('paginates cdx queries with resume keys', function (): void {
     expect($captures)->toHaveCount(2)
         ->and($captures[1]->originalUrl)->toBe('https://example.com/two');
 
-    Http::assertSent(fn ($request): bool => $request->url() === 'https://web.archive.org/cdx/search/cdx?url=example.com%2A&output=json&fl=timestamp%2Coriginal%2Cstatuscode%2Cmimetype%2Cdigest%2Clength&showResumeKey=true&page=0');
+    Http::assertSent(fn ($request): bool => $request->url() === 'https://web.archive.org/cdx/search/cdx?url=example.com&matchType=host&output=json&fl=timestamp%2Coriginal%2Cstatuscode%2Cmimetype%2Cdigest%2Clength&showResumeKey=true&page=0');
     Http::assertSent(fn ($request): bool => str_contains((string) $request->url(), 'resumeKey=resume-1'));
 });
