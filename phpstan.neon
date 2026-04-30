@@ -1,0 +1,13 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+    - vendor/odinns/phpstan-pest-this/extension.neon
+
+parameters:
+    paths:
+        - src
+        - tests
+    pestClosureThisTypeMap:
+        -
+            pathContains: '/tests/'
+            class: Odinns\LaravelWaybackMachine\Tests\TestCase
+    level: 6
