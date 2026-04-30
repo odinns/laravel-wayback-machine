@@ -12,4 +12,4 @@ git diff --check
 
 Do not add Save Page Now support to this package. That is a different tool with different safety rules.
 
-If you touch download behavior, add tests for retries, delay, no-clobber behavior, and failure handling. The boring edge cases are the point.
+If you touch download or mirror behavior, test the boring edge cases: retries, delay, no-clobber behavior, path collisions, failed captures, and local reference rewriting.

@@ -3,6 +3,10 @@ laravel: '@testbench'
 providers:
   - Odinns\LaravelWaybackMachine\WaybackMachineServiceProvider
 
+env:
+  WAYBACK_MACHINE_MANIFESTS_PATH: './storage/app/wayback-machine/manifests'
+  WAYBACK_MACHINE_CAPTURES_PATH: './storage/app/wayback-machine/captures'
+
 workbench:
   install: false
   discovers:

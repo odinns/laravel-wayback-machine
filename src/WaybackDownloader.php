@@ -51,6 +51,6 @@ final readonly class WaybackDownloader
             return true;
         }
 
-        return $this->files->size($path) === $capture->length;
+        return $this->files->size($path) >= $capture->length;
     }
 }

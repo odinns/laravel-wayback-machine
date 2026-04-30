@@ -40,6 +40,11 @@ final readonly class CdxCapture
         return new self($this->timestamp, $this->originalUrl, $this->status, $this->mimeType, $this->digest, $this->length, $localPath);
     }
 
+    public function withOriginalUrl(string $originalUrl): self
+    {
+        return new self($this->timestamp, $originalUrl, $this->status, $this->mimeType, $this->digest, $this->length, $this->localPath);
+    }
+
     /**
      * @return array<string, mixed>
      */

@@ -11,7 +11,7 @@ return [
     'retry_statuses' => [429, 500, 502, 503, 504],
     'retry_backoff_ms' => [1000, 3000, 10000, 30000],
     'paths' => [
-        'manifests' => storage_path('app/wayback-machine/manifests'),
-        'captures' => storage_path('app/wayback-machine/captures'),
+        'manifests' => env('WAYBACK_MACHINE_MANIFESTS_PATH', storage_path('app/wayback-machine/manifests')),
+        'captures' => env('WAYBACK_MACHINE_CAPTURES_PATH', storage_path('app/wayback-machine/captures')),
     ],
 ];

@@ -44,17 +44,18 @@ trait BuildsWaybackInputs
     protected function optionsFromInput(): WaybackOptions
     {
         app(ReplayUrlBuilder::class)->useReplayRoot($this->nullableOption('replay-root'));
+        $ignoreErrors = (bool) $this->option('ignore-errors');
 
         return new WaybackOptions(
             timeout: (int) $this->option('timeout'),
             delayMs: (int) $this->option('delay-ms'),
             userAgent: (string) $this->option('user-agent'),
             followRedirects: (bool) $this->option('follow-redirects'),
-            ignoreErrors: (bool) $this->option('ignore-errors'),
+            ignoreErrors: $ignoreErrors,
             force: (bool) $this->option('force'),
             dryRun: (bool) $this->option('dry-run'),
             selection: (string) $this->option('selection'),
-            retryBackoffMs: (array) config('wayback-machine.retry_backoff_ms', [1000, 3000, 10000, 30000]),
+            retryBackoffMs: $ignoreErrors ? [] : (array) config('wayback-machine.retry_backoff_ms', [1000, 3000, 10000, 30000]),
         );
     }
 

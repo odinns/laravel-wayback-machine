@@ -1,8 +1,24 @@
 {
     "name": "odinns/laravel-wayback-machine",
-    "description": "Read, list, manifest, and download existing Internet Archive Wayback Machine captures from Laravel.",
+    "description": "Restore public Wayback Machine captures from Laravel into local files.",
     "type": "library",
     "license": "MIT",
+    "keywords": [
+        "archive",
+        "internet-archive",
+        "laravel",
+        "wayback-machine"
+    ],
+    "homepage": "https://github.com/odinns/laravel-wayback-machine",
+    "authors": [
+        {
+            "name": "Odinn Sorensen"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/odinns/laravel-wayback-machine/issues",
+        "source": "https://github.com/odinns/laravel-wayback-machine"
+    },
     "autoload": {
         "psr-4": {
             "Odinns\\LaravelWaybackMachine\\": "src/"

@@ -35,3 +35,28 @@ it('redownloads existing files when cdx length shows they are partial', function
 
     @unlink($path);
 });
+
+it('skips existing files when they are at least the cdx length', function (): void {
+    $path = sys_get_temp_dir().'/wayback-complete-download-test.txt';
+    file_put_contents($path, 'complete-content-with-extra-replay-bytes');
+
+    Http::fake([
+        'web.archive.test/web/*' => Http::response('should-not-download'),
+    ]);
+
+    $client = new WaybackClient(app(Factory::class), new CdxParser(), new ReplayUrlBuilder('https://web.archive.test'), new GlobalRequestDelay(0));
+    $downloader = new WaybackDownloader($client, new Filesystem());
+
+    $result = $downloader->download(
+        new CdxCapture('20200101000000', 'https://example.com/file.txt', 200, 'text/plain', 'ABC', strlen('complete-content')),
+        $path,
+        new WaybackOptions(delayMs: 0, userAgent: 'test-agent'),
+    );
+
+    expect($result->status)->toBe('skipped')
+        ->and(file_get_contents($path))->toBe('complete-content-with-extra-replay-bytes');
+
+    Http::assertNothingSent();
+
+    @unlink($path);
+});

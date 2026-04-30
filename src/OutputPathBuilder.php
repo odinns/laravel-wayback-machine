@@ -10,10 +10,23 @@ final class OutputPathBuilder
     {
         $capture->assertDownloadable();
 
+        return $this->pathForTimestamp($scope, (string) $capture->timestamp, (string) $capture->originalUrl, $basePath);
+    }
+
+    public function dependencyPath(CaptureScope $scope, CdxCapture $source, CdxCapture $dependency, string $basePath): string
+    {
+        $source->assertDownloadable();
+        $dependency->assertDownloadable();
+
+        return $this->pathForTimestamp($scope, (string) $source->timestamp, (string) $dependency->originalUrl, $basePath);
+    }
+
+    private function pathForTimestamp(CaptureScope $scope, string $timestamp, string $url, string $basePath): string
+    {
         return rtrim($basePath, DIRECTORY_SEPARATOR)
             .DIRECTORY_SEPARATOR.$scope->safeName()
-            .DIRECTORY_SEPARATOR.$capture->timestamp
-            .DIRECTORY_SEPARATOR.$this->safeUrlPath((string) $capture->originalUrl);
+            .DIRECTORY_SEPARATOR.$timestamp
+            .DIRECTORY_SEPARATOR.$this->safeUrlPath($url);
     }
 
     public function manifestPath(CaptureScope $scope, string $basePath): string

@@ -25,6 +25,8 @@ final class WaybackMachineServiceProvider extends ServiceProvider
         $this->app->singleton(WaybackClient::class);
         $this->app->singleton(WaybackDownloader::class);
         $this->app->singleton(WaybackMirror::class);
+        $this->app->singleton(OfflineMirrorRewriter::class);
+        $this->app->singleton(MirrorReferenceExtractor::class);
         $this->app->singleton(ManifestWriter::class);
         $this->app->singleton(ReplayUrlBuilder::class);
     }
